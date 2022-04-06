@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from models import Owner
-from models import Vet
-from models import Dog
+from .models import Owner
+from .models import Vet
+from .models import Dog
 
 class OwnerSerializer(serializers.ModelSerializer):
     class Meta:
