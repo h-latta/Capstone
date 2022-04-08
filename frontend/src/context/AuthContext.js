@@ -3,10 +3,6 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 
-import OwnerHome from "../pages/OwnerHome/OwnerHome";
-import VetHome from "../pages/VetHome/VetHome"
-import { Routes, Route } from "react-router-dom";
-import PrivateRoute from "../utils/PrivateRoute";
 
 const AuthContext = createContext();
 
@@ -66,10 +62,10 @@ export const AuthProvider = ({ children }) => {
         console.log(loggedInUser)
         setUser(setUserObject(loggedInUser));
         setIsServerError(false);
-        if(user.role === 'owner'){
+        if(loggedInUser.role === 'owner'){
         navigate ("/ownerhome")
       }
-        if(user.role === 'vet'){
+        if(loggedInUser.role === 'vet'){
         navigate('/vethome')
       }
       } else {
@@ -78,7 +74,7 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       console.log(error);
       setIsServerError(true);
-      navigate("/register");
+      navigate("/login");
     }
   };
 
