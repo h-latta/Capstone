@@ -54,8 +54,8 @@ function App() {
     <div>
       <Navbar />
       <Routes>
-        <Route path="/ownerhome"/>
-        <Route path="/vethome"/>
+        <Route path="/ownerhome" element={<PrivateRoute> <OwnerHome /></PrivateRoute>}/>
+        <Route path="/vethome" element={<PrivateRoute> <VetHome /></PrivateRoute>}/>
         <Route path="/ownerregister" element={<OwnerRegisterPage />} />
         <Route path="/vetregister" element={<VetRegisterPage />} />
         <Route path="/login" element={<LoginPage />} />

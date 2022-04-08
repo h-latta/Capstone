@@ -20,6 +20,7 @@ function setUserObject(user) {
     username: user.username,
     id: user.user_id,
     first_name: user.first_name,
+    role: user.role
   };
 }
 
@@ -62,23 +63,20 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem("token", JSON.stringify(response.data.access));
         setToken(JSON.parse(localStorage.getItem("token")));
         let loggedInUser = jwtDecode(response.data.access);
+        console.log(loggedInUser)
         setUser(setUserObject(loggedInUser));
         setIsServerError(false);
-        let userRole = await axios.get('http://127.0.0.1:8000/api/auth/', {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-        })
-      if(userRole.role === user.role){
-        navigate (
-          <Route path="/ownerhome" element={<PrivateRoute> <OwnerHome /></PrivateRoute>}/>
-        )
+        if(user.role === 'owner'){
+        navigate ("/ownerhome")
+      }
+        if(user.role === 'vet'){
+        navigate('/vethome')
       }
       } else {
-        navigate("/register");
+        navigate("/login");
       }
     } catch (error) {
-      console.log(error.toJSON());
+      console.log(error);
       setIsServerError(true);
       navigate("/register");
     }
