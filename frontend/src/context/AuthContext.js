@@ -49,7 +49,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const loginUser = async (loginData) => {
+  const loginUser = async (loginData, props) => {
     try {
       let response = await axios.post(`${BASE_URL}/login/`, loginData);
       if (response.status === 200) {
@@ -58,7 +58,7 @@ export const AuthProvider = ({ children }) => {
         let loggedInUser = jwtDecode(response.data.access);
         setUser(setUserObject(loggedInUser));
         setIsServerError(false);
-        navigate("/");
+        navigate("/ownerhome");
       } else {
         navigate("/register");
       }
@@ -74,7 +74,7 @@ export const AuthProvider = ({ children }) => {
       localStorage.removeItem("token");
       setUser(null);
       setToken(null);
-      navigate("/");
+      navigate("/login");
     }
   };
 
