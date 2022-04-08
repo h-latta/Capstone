@@ -3,6 +3,11 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 
+import OwnerHome from "../pages/OwnerHome/OwnerHome";
+import VetHome from "../pages/VetHome/VetHome"
+import { Routes, Route } from "react-router-dom";
+import PrivateRoute from "../utils/PrivateRoute";
+
 const AuthContext = createContext();
 
 export default AuthContext;
@@ -49,7 +54,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const loginUser = async (loginData, props) => {
+  const loginUser = async (loginData) => {
     try {
       let response = await axios.post(`${BASE_URL}/login/`, loginData);
       if (response.status === 200) {
@@ -58,7 +63,16 @@ export const AuthProvider = ({ children }) => {
         let loggedInUser = jwtDecode(response.data.access);
         setUser(setUserObject(loggedInUser));
         setIsServerError(false);
-        navigate("/ownerhome");
+        let userRole = await axios.get('http://127.0.0.1:8000/api/users/owner/', {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+        })
+      if(userRole.user_id === user.id){
+        navigate (
+          <Route path="/ownerhome" element={<PrivateRoute> <OwnerHome /></PrivateRoute>}/>
+        )
+      }
       } else {
         navigate("/register");
       }
