@@ -40,6 +40,7 @@ export const AuthProvider = ({ children }) => {
         email: registerData.email,
         first_name: registerData.firstName,
         last_name: registerData.lastName,
+        role: registerData.role
       };
       let response = await axios.post(`${BASE_URL}/register/`, finalData);
       if (response.status === 201) {
@@ -63,12 +64,12 @@ export const AuthProvider = ({ children }) => {
         let loggedInUser = jwtDecode(response.data.access);
         setUser(setUserObject(loggedInUser));
         setIsServerError(false);
-        let userRole = await axios.get('http://127.0.0.1:8000/api/users/owner/', {
+        let userRole = await axios.get('http://127.0.0.1:8000/api/auth/', {
         headers: {
           Authorization: "Bearer " + token,
         },
         })
-      if(userRole.user_id === user.id){
+      if(userRole.role === user.role){
         navigate (
           <Route path="/ownerhome" element={<PrivateRoute> <OwnerHome /></PrivateRoute>}/>
         )
