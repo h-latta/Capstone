@@ -18,8 +18,10 @@ const HomePage = () => {
             Authorization: "Bearer " + token,
           },
         });
-        setDogs(response.data);
-      } catch (error) {
+        if(user.id == response.owner_id){
+        setDogs(response.data);}
+      } 
+      catch (error) {
         console.log(error.message);
       }
     };
