@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { GoogleMap, InfoWindow, LoadScript, Marker } from "@react-google-maps/api";
+import { GoogleMap, LoadScript } from "@react-google-maps/api";
 
 const VetMap = () => {
 
@@ -9,8 +9,8 @@ const VetMap = () => {
     }
 
     const center = {
-        lat: 28.626137,
-        lng: 79.821603,
+        lat: 29.4187,
+        lng: -98.6882,
     }
 
     const mapClicked = (event) => { 

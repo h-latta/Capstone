@@ -16,7 +16,7 @@ class Vet(models.Model):
     phone_number = models.CharField(max_length=13)
 
 class Dog(models.Model):
-    owner = models.ForeignKey(Owner, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     breed = models.CharField(max_length=255)
     birthday = models.DateField()

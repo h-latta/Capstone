@@ -19,7 +19,7 @@ const HomePage = () => {
             Authorization: "Bearer " + token,
           },
         });
-        if(user.id === response.owner_id){
+        if(user.id = response.owner_id){
         setDogs(response.data);}
       } 
       catch (error) {
@@ -29,18 +29,24 @@ const HomePage = () => {
     fetchDogs();
   }, [token]);
   return (
-    <container>
     <div className="container">
       <h1>Welcome back, {user.first_name}!</h1>
-      {dogs &&
-        dogs.map((dog) => (
-          <p key={dog.id}>
-            {dog.name} {dog.breed} {dog.birthday} {dog.last_checkup} {dog.conditions}
-          </p>
-        ))}
+      <table>
+        <thead>Your Dogs</thead>
+        <tbody>
+          {dogs && dogs.map(dog => {
+              return (
+              <tr key={dog.id}>
+                <td>{dog.name}</td> 
+                <td>{dog.breed}</td>
+                <td>{dog.birthday}</td>
+                <td>{dog.last_checkup}</td>
+                <td>{dog.conditions}</td>
+              </tr>)
+              })};
+            </tbody>
+        </table>
     </div>
-    <VetMap />
-    </container>
   );
 };
 
