@@ -4,7 +4,7 @@ import { GoogleMap, LoadScript } from "@react-google-maps/api";
 const VetMap = () => {
 
     const containerStyle = {
-        width: "40%",
+        width: "100%",
         height: "25rem",
     }
 

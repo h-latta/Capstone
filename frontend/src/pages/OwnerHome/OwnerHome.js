@@ -4,8 +4,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import VetMap from "../../components/VetMap/VetMap";
+import Calendar from "../../components/Calendar/Calendar";
 
-const HomePage = () => {
+const OwnerHome = () => {
   // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
   // The "token" value is the JWT token that you will send in the header of any request requiring authentication
   const [user, token] = useAuth();
@@ -14,12 +15,12 @@ const HomePage = () => {
   useEffect(() => {
     const fetchDogs = async () => {
       try {
-        let response = await axios.get("http://127.0.0.1:8000/api/users/dog/", {
+        let response = await axios.get('http://127.0.0.1:8000/api/users/dog', {
           headers: {
             Authorization: "Bearer " + token,
           },
         });
-        if(user.id = response.owner_id){
+        if(user.id === response.owner_id){
         setDogs(response.data);}
       } 
       catch (error) {
@@ -32,11 +33,15 @@ const HomePage = () => {
     <div className="container">
       <h1>Welcome back, {user.first_name}!</h1>
       <table>
-        <thead>Your Dogs</thead>
+        <thead>
+          <tr>
+            <th>Your Dogs</th>
+          </tr>
+        </thead>
         <tbody>
-          {dogs && dogs.map(dog => {
+          {dogs.map((dog) => {
               return (
-              <tr key={dog.id}>
+              <tr key = {dog.id}>
                 <td>{dog.name}</td> 
                 <td>{dog.breed}</td>
                 <td>{dog.birthday}</td>
@@ -46,8 +51,10 @@ const HomePage = () => {
               })};
             </tbody>
         </table>
+      <VetMap />
+      <Calendar />
     </div>
   );
 };
 
-export default HomePage;
+export default OwnerHome;
