@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
+import VetMap from "../../components/VetMap/VetMap";
 
 const HomePage = () => {
   // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
@@ -18,7 +19,7 @@ const HomePage = () => {
             Authorization: "Bearer " + token,
           },
         });
-        if(user.id == response.owner_id){
+        if(user.id === response.owner_id){
         setDogs(response.data);}
       } 
       catch (error) {
@@ -28,6 +29,7 @@ const HomePage = () => {
     fetchDogs();
   }, [token]);
   return (
+    <container>
     <div className="container">
       <h1>Welcome back, {user.first_name}!</h1>
       {dogs &&
@@ -37,6 +39,8 @@ const HomePage = () => {
           </p>
         ))}
     </div>
+    <VetMap />
+    </container>
   );
 };
 

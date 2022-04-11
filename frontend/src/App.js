@@ -12,7 +12,6 @@ import VetRegisterPage from "./pages/VetRegister/VetRegisterPage";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
-import Footer from "./components/Footer/Footer";
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
@@ -21,35 +20,7 @@ import AuthContext, { AuthProvider } from "./context/AuthContext";
 
 
 function App() {
-  const [user, token] = useAuth();
   
-  async function getRoles(){
-    let userRole = await axios.get('http://127.0.0.1:8000/api/users/owner/', {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    })
-    if(userRole.user_id === user.id){
-      return (
-        <Route path="/ownerhome" element={<PrivateRoute> <OwnerHome /></PrivateRoute>}/>
-      )
-    }
-  }
-  
-
-  async function getVetRoles(){
-    let userRole = await axios.get('http://127.0.0.1:8000/api/users/vet', {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    })
-    if(userRole.user_id === user.id){
-      return (
-        <Route path="/vethome" element={<PrivateRoute> <VetHome /></PrivateRoute>}/>
-        )
-    }
-  }
-
   return (
     <div>
       <Navbar />
