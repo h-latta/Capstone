@@ -18,5 +18,5 @@ class VetSerializer(serializers.ModelSerializer):
 class DogSerializer(serializers.ModelSerializer):
     class Meta:
         model = Dog
-        fields = ['name', 'breed', 'birthday', 'last_checkup', 'conditions', 'owner']
+        fields = ['name', 'breed', 'birthday', 'last_checkup', 'conditions', 'user']
         depth = 2
