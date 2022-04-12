@@ -45,7 +45,7 @@ const OwnerHome = () => {
     <div className="container">
       <h1>Welcome back, {user.first_name}!</h1>
       <h3>Your Dogs</h3>
-      <table>
+      <table className="table">
         <thead>
           <tr>
             <th>Name</th>
