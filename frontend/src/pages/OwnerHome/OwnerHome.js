@@ -1,10 +1,11 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import VetMap from "../../components/VetMap/VetMap";
 import Calendar from "../../components/Calendar/Calendar";
+import AddDog from "../../components/AddDog/AddDog";
 
 const OwnerHome = () => {
   // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
@@ -17,10 +18,8 @@ const OwnerHome = () => {
         headers: {
           Authorization: "Bearer " + token,
         },
-      })
-      console.log(response.data)
-      SetDogs(response.data)
-      console.log(Dogs)
+      });
+      SetDogs(Dogs => ([...Dogs, ...response.data]))
   };
 
 
@@ -49,6 +48,7 @@ const OwnerHome = () => {
               })};
             </tbody>
         </table>
+      <AddDog />
       <Calendar />
     </div>
   );
