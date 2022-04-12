@@ -10,28 +10,27 @@ const OwnerHome = () => {
   // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
   // The "token" value is the JWT token that you will send in the header of any request requiring authentication
   const [user, token] = useAuth();
-  const [dogs, setDogs] = useState([]);
+  const [Dogs, SetDogs] = useState([]);
+
+  async function fetchDogs(){
+      let response = await axios.get('http://127.0.0.1:8000/api/users/dog/', {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      console.log(response.data)
+      SetDogs(response.data)
+      console.log(Dogs)
+  };
+
 
   useEffect(() => {
-    const fetchDogs = async () => {
-      try {
-        let response = await axios.get('http://127.0.0.1:8000/api/users/dog', {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        });
-        if(user.id === response.owner_id){
-        setDogs(response.data);}
-      } 
-      catch (error) {
-        console.log(error.message);
-      }
-    };
     fetchDogs();
   }, [token]);
+
   return (
     <div className="container">
-      <h1>Welcome back, {user.first_name}!</h1>
+      <h1>Welcome back , {user.first_name}!</h1>
       <table>
         <thead>
           <tr>
@@ -39,19 +38,17 @@ const OwnerHome = () => {
           </tr>
         </thead>
         <tbody>
-          {dogs.map((dog) => {
-              return (
-              <tr key = {dog.id}>
+          {Dogs && Dogs.map((dog) => {
+              <tr key={dog.id}>
                 <td>{dog.name}</td> 
                 <td>{dog.breed}</td>
                 <td>{dog.birthday}</td>
                 <td>{dog.last_checkup}</td>
                 <td>{dog.conditions}</td>
-              </tr>)
+              </tr>
               })};
             </tbody>
         </table>
-      <VetMap />
       <Calendar />
     </div>
   );
