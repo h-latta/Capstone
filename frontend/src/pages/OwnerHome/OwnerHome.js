@@ -8,45 +8,56 @@ import Calendar from "../../components/Calendar/Calendar";
 import AddDog from "../../components/AddDog/AddDog";
 
 const OwnerHome = () => {
-  // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
-  // The "token" value is the JWT token that you will send in the header of any request requiring authentication
   const [user, token] = useAuth();
-  const [Dogs, SetDogs] = useState([]);
+  const [dogs, setDogs] = useState([]);
 
   async function fetchDogs(){
-      let response = await axios.get('http://127.0.0.1:8000/api/users/dog/', {
+      let response = await axios.get(`http://127.0.0.1:8000/api/users/dog/`, {
         headers: {
           Authorization: "Bearer " + token,
         },
       });
-      SetDogs(Dogs => ([...Dogs, ...response.data]))
+      setDogs(response.data)
+  }
+
+  const filterDogs =()=>{
+    if (dogs.length > 0){
+      return dogs.filter(dog => dog.user.id === user.id).map(filteredDog => 
+        <tr key={filteredDog.id}>
+      <td>{filteredDog.name}</td>
+      <td>{filteredDog.breed}</td>
+      <td>{filteredDog.birthday}</td>
+      <td>{filteredDog.last_checkup}</td>
+      <td>{filteredDog.conditions}</td>
+    </tr>
+    );
+    }
+    else{
+      return null
+    }
   };
-
-
-  useEffect(() => {
-    fetchDogs();
-  }, [token]);
+      
+    useEffect(() => {
+      fetchDogs();
+    }, []);
 
   return (
     <div className="container">
-      <h1>Welcome back , {user.first_name}!</h1>
+      <h1>Welcome back, {user.first_name}!</h1>
+      <h3>Your Dogs</h3>
       <table>
         <thead>
           <tr>
-            <th>Your Dogs</th>
+            <th>Name</th>
+            <th>Breed</th>
+            <th>Birthday</th>
+            <th>Last Checkup</th>
+            <th>Conditions</th>
           </tr>
         </thead>
         <tbody>
-          {Dogs && Dogs.map((dog) => {
-              <tr key={dog.id}>
-                <td>{dog.name}</td> 
-                <td>{dog.breed}</td>
-                <td>{dog.birthday}</td>
-                <td>{dog.last_checkup}</td>
-                <td>{dog.conditions}</td>
-              </tr>
-              })};
-            </tbody>
+          {filterDogs()}
+        </tbody>
         </table>
       <AddDog />
       <Calendar />
