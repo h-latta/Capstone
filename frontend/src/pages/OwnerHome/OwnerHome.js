@@ -61,6 +61,7 @@ const OwnerHome = () => {
         </table>
       <AddDog />
      <Calendar />
+    <VetMap />
     </div>
   );
 };

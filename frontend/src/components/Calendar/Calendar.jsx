@@ -5,6 +5,7 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import Events from './Events';
 
+
 export default class Calendar extends React.Component { 
   render() {
     return (
@@ -16,7 +17,7 @@ export default class Calendar extends React.Component {
         selectable={true}
         editable={true}
         events={[
-          { title: 'event 1', date: '2022-04-14'}
+          {Events}
         ]}
       />
     )
