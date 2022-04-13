@@ -3,9 +3,11 @@ from rest_framework.response import Response
 from .models import Owner
 from .models import Vet
 from .models import Dog
+from .models import Event
 from .serializers import OwnerSerializer
 from .serializers import VetSerializer
 from .serializers import DogSerializer
+from .serializers import EventSerializer
 from rest_framework import status
 from django.shortcuts import get_object_or_404
 from rest_framework.permissions import IsAuthenticated, AllowAny
@@ -95,3 +97,16 @@ def update_or_delete_dog(request, pk):
     elif request.method == 'DELETE':
         dog.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticated])
+def event_requests(request):
+    if request.method == 'GET':
+        event = Event.objects.all()
+        serializer = EventSerializer(event, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    elif request.method == 'POST':
+        serializer = EventSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save(user=request.user)
+            return Response(serializer.errors, status=status.HTTP_201_CREATED)

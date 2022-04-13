@@ -25,5 +25,8 @@ class DogSerializer(serializers.ModelSerializer):
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = ['user', 'dog', 'vet', 'date', 'time', 'description']
+        fields = ['date', 'time', 'description', 'user', 'user_id', 'dog', 'dog_id', 'vet', 'vet_id']
         depth = 2
+    user_id = serializers.IntegerField(write_only=True)
+    dog_id = serializers.IntegerField(write_only=True)
+    vet_id = serializers.IntegerField(write_only=True)
