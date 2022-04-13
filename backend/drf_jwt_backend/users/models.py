@@ -22,3 +22,11 @@ class Dog(models.Model):
     birthday = models.DateField()
     last_checkup = models.DateField()
     conditions = models.TextField()
+
+class Event(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    dog = models.ForeignKey(Dog, on_delete=models.CASCADE)
+    vet = models.ForeignKey(Vet, on_delete=models.CASCADE)
+    date = models.DateField()
+    time = models.TimeField()
+    description = models.CharField(max_length=255)

@@ -60,7 +60,7 @@ const OwnerHome = () => {
         </tbody>
         </table>
       <AddDog />
-      <Calendar />
+     <Calendar />
     </div>
   );
 };
