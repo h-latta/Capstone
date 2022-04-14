@@ -26,7 +26,6 @@ const HomePage = () => {
   return (
     <div className="container">
       <h1>Welcome back, {user.first_name}!</h1>
-      <h2>Appointment Tracker</h2>
       <Calendar data={events}/>
     </div>
   )};

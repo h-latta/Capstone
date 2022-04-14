@@ -6,6 +6,7 @@ import useAuth from "../../hooks/useAuth";
 import VetMap from "../../components/VetMap/VetMap";
 import Calendar from "../../components/Calendar/Calendar";
 import AddDog from "../../components/AddDog/AddDog";
+import AddAppt from "../../components/AddAppt/AddAppt";
 
 const OwnerHome = () => {
   const [user, token] = useAuth();
@@ -69,6 +70,7 @@ const OwnerHome = () => {
         </tbody>
         </table>
       <AddDog />
+      <AddAppt />
      <Calendar data={events}/>
      <h2>Search for a clinic near you!</h2>
     </div>

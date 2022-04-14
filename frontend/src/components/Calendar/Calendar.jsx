@@ -32,12 +32,19 @@ class Calendar extends React.Component {
   );
 }
   handleEventClick = (events) => {
-    alert(events.extendedProps)
+    renderEventContent(events)
   }
 
 
   handleDateClick = (date) => {
 
   }
+  
 }
+function renderEventContent(events) {
+  return (
+    alert(events.extendedProps)
+  )
+}
+
 export default Calendar;
