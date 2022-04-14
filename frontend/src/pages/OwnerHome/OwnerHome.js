@@ -69,7 +69,7 @@ const OwnerHome = () => {
         </tbody>
         </table>
       <AddDog />
-     <Calendar data={events} />
+     <Calendar data={events}/>
      <h2>Search for a clinic near you!</h2>
     </div>
   );
