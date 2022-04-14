@@ -10,7 +10,16 @@ import AddDog from "../../components/AddDog/AddDog";
 const OwnerHome = () => {
   const [user, token] = useAuth();
   const [dogs, setDogs] = useState([]);
+  const [events, setEvents] = useState([])
 
+  async function getEvents() {
+    let response = await axios.get('http://127.0.0.1:8000/api/users/event/', {
+      headers: {
+        Authorization: "Bearer " + token,
+      }
+    });
+    setEvents(response.data)
+  }
   async function fetchDogs(){
       let response = await axios.get(`http://127.0.0.1:8000/api/users/dog/`, {
         headers: {
@@ -38,7 +47,7 @@ const OwnerHome = () => {
   };
       
     useEffect(() => {
-      fetchDogs();
+      fetchDogs(); getEvents();
     }, []);
 
   return (
@@ -60,8 +69,8 @@ const OwnerHome = () => {
         </tbody>
         </table>
       <AddDog />
-     <Calendar />
-    <VetMap />
+     <Calendar data={events} />
+     <h2>Search for a clinic near you!</h2>
     </div>
   );
 };
