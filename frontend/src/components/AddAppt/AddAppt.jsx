@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import './AddAppt.css'
 import useAuth from '../../hooks/useAuth';
 
 const AddAppt = () => {
@@ -36,7 +37,7 @@ const AddAppt = () => {
     };
     return ( 
         <>
-        <button onClick={toggleShown}>Make an appointment!</button>
+        <button className='button' onClick={toggleShown}>Make an appointment!</button>
         {isShown &&
         <div className="container">
         <form className="form" onSubmit={handleSubmit}>

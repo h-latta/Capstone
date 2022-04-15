@@ -24,7 +24,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="container">
+    <div>
       <h1>Welcome back, {user.first_name}!</h1>
       <Calendar data={events}/>
     </div>

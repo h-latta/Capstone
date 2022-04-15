@@ -51,7 +51,8 @@ const OwnerHome = () => {
     }, []);
 
   return (
-    <div className="container">
+    <>
+    <div>
       <h1>Welcome back, {user.first_name}!</h1>
       <h3>Your Dogs</h3>
       <table className="table">
@@ -68,11 +69,15 @@ const OwnerHome = () => {
           {filterDogs()}
         </tbody>
         </table>
-      <AddDog />
-      <AddAppt />
+        <div>
+          <AddDog />
+          <AddAppt />
+        </div>
      <Calendar data={events}/>
      <h2>Search for a clinic near you!</h2>
+     <VetMap />
     </div>
+    </>
   );
 };
 

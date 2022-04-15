@@ -11,9 +11,7 @@ const Navbar = () => {
     <div className="navBar">
       <ul>
         <li className="brand">
-          <Link to="/ownerhome" style={{ textDecoration: "none", color: "white" }}>
             <b>DogLife</b>
-          </Link>
         </li>
         <li>
           {user ? (

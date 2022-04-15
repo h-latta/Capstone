@@ -19,6 +19,7 @@ const LoginPage = () => {
   }, [isServerError]);
 
   return (
+    <>
     <div className="container">
       <form className="form" onSubmit={handleSubmit}>
         <label>
@@ -47,6 +48,7 @@ const LoginPage = () => {
         <button>Login!</button>
       </form>
     </div>
+    </>
   );
 };
 

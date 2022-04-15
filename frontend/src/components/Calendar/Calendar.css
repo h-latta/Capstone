@@ -1,0 +1,7 @@
+.calendar {
+    justify-content: center;
+    flex-direction: row;
+    box-sizing: border-box;
+    width: auto;
+    height: auto;
+}

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import './AddDog.css'
 import useAuth from '../../hooks/useAuth';
 
 const AddDog = () => {
@@ -37,7 +38,7 @@ const AddDog = () => {
     };
     return ( 
         <>
-        <button onClick={toggleShown}>Add your dog!</button>
+        <button className='button' onClick={toggleShown}>Add your dog!</button>
         {isShown &&
         <div className="container">
         <form className="form" onSubmit={handleSubmit}>

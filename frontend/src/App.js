@@ -22,7 +22,8 @@ import AuthContext, { AuthProvider } from "./context/AuthContext";
 function App() {
   
   return (
-    <div>
+    <>
+    <div className="app">
       <Navbar />
       <Routes>
         <Route path="/ownerhome" element={<PrivateRoute> <OwnerHome /></PrivateRoute>}/>
@@ -32,6 +33,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
       </Routes>
     </div>
+    </>
   );
 }
 

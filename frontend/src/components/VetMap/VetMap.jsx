@@ -35,7 +35,7 @@ export class VetMap extends Component {
  
   render() {
     return (
-      <div id='googleMaps'>
+      <div id='googleMaps' className='map'>
         <PlacesAutocomplete
           value={this.state.address}
           onChange={this.handleChange}
