@@ -36,7 +36,8 @@ class Calendar extends React.Component {
     alert('Dog: ' + info.event.extendedProps.dog.name + ', ' + 'a ' 
     + info.event.extendedProps.dog.breed + '. Birthday is ' +
      info.event.extendedProps.dog.birthday + '. Last checkup was on ' +
-      info.event.extendedProps.dog.last_checkup + '.')
+      info.event.extendedProps.dog.last_checkup + '. Special conditions or notes: ' 
+      + info.event.extendedProps.dog.conditions)
     alert('Owner: ' + info.event.extendedProps.owner.first_name + ' ' + 
     info.event.extendedProps.owner.last_name + ', their email is '
      + info.event.extendedProps.owner.email + '.')
