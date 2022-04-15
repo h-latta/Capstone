@@ -32,8 +32,14 @@ class Calendar extends React.Component {
     </div>
   );
 }
-  handleEventClick = (events) => {
-    renderEventContent(events)
+  handleEventClick = (info) => {
+    alert('Dog: ' + info.event.extendedProps.dog.name + ', ' + 'a ' 
+    + info.event.extendedProps.dog.breed + '. Birthday is ' +
+     info.event.extendedProps.dog.birthday + '. Last checkup was on ' +
+      info.event.extendedProps.dog.last_checkup + '.')
+    alert('Owner: ' + info.event.extendedProps.owner.first_name + ' ' + 
+    info.event.extendedProps.owner.last_name + ', their email is '
+     + info.event.extendedProps.owner.email + '.')
   }
 
 
@@ -42,10 +48,6 @@ class Calendar extends React.Component {
   }
   
 }
-function renderEventContent(events) {
-  return (
-    alert(events.extendedProps)
-  )
-}
+
 
 export default Calendar;

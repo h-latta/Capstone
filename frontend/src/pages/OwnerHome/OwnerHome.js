@@ -6,6 +6,7 @@ import VetMap from "../../components/VetMap/VetMap";
 import Calendar from "../../components/Calendar/Calendar";
 import AddDog from "../../components/AddDog/AddDog";
 import AddAppt from "../../components/AddAppt/AddAppt";
+import './OwnerHome.css'
 
 const OwnerHome = () => {
   const [user, token] = useAuth();
@@ -52,9 +53,9 @@ const OwnerHome = () => {
 
   return (
     <>
-    <div>
+    <div className="ownerhome">
       <h1>Welcome back, {user.first_name}!</h1>
-      <h3>Your Dogs</h3>
+      <h3 className="dog-header">Your Dogs</h3>
       <table className="table">
         <thead>
           <tr>
@@ -74,8 +75,7 @@ const OwnerHome = () => {
           <AddAppt />
         </div>
      <Calendar data={events}/>
-     <h2>Search for a clinic near you!</h2>
-     <VetMap />
+     <h2 className="map-header">Search for a clinic near you!</h2>
     </div>
     </>
   );

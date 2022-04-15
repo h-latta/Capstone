@@ -1,0 +1,10 @@
+.dog-header {
+    margin-top: 2rem;
+}
+
+.ownerhome {
+    flex-direction: column;
+    text-align: center;
+    display: flexbox;
+    position: relative;
+}
