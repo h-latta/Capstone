@@ -68,7 +68,7 @@ const AddAppt = () => {
             />
           </label>
           <label>
-            Dog:{" "}
+            Dog ID:{" "}
             <input
               type="text"
               name="name"
@@ -77,7 +77,7 @@ const AddAppt = () => {
             />
           </label>
           <label>
-            Vet:{" "}
+            Vet ID:{" "}
             <input
               type="text"
               name="vet"
